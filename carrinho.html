@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexustech</title>
+  <!-- Adicione as bibliotecas CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/carrinho.css">
+  <link rel="stylesheet" href="script.js">
+  <!-- Adicione as fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <!-- Adicione o ícone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <script src="./script.js"></script>
+  <!-- Adicione o HTML do cabeçalho -->
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <div class="container-fluid">
+    <header class="header">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-transparent">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="indexx.html">NEXUSTECH</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="indexx.html">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">SOBRE NÓS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">CONTATOS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">SUPORTE</a>
+              </li>
+            </ul>
+            <a href="carrinho.html"><form class="d-flex">
+              <img class="user" src="./imgs/user.png" alt="">
+              <img class="carrinho" src="./imgs/carrinho.png" alt="">
+            </form></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </div>
+  <!-- Adicione o HTML do conteúdo -->
+  <div class="linha"></div>
+<div class="conteudo2">
+    <h1 id="h1">O seu carrinho está vazio.</h1>
+    <p id="p">Deseja olhar outros produtos similares?</p>
+    <a></a><button class="botao1"><i class="fa fa-shopping-cart" aria-hidden="true"></i>continuar comprando</button>
+
+    <!--Itens do carrinho-->
+    <ul id="cart-list"></ul>
+
+    <button onclick="clearCart()" id="limparCarrinhoBtn" class="botao1" style="display: none;">Limpar Carrinho</button> <!-- Botão para limpar o carrinho -->
+</div>
+
+
+     
+   
+
+<script type="text/javascript">
+
+//Função para renderizar o carrinho na página
+function renderCart() {
+    const cartList = document.getElementById('cart-list');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const limparCarrinhoBtn = document.getElementById('limparCarrinhoBtn'); 
+
+    cartList.innerHTML = '';
+
+    cart.forEach(item => {
+        const cartItem = document.createElement('li');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.imageUrl}" alt="${item.name}">
+            <div class="nomeproduto">
+                <h3>${item.name}</h3>
+            </div>
+            <div class="preco">
+                <p>Price: $${item.price}</p>
+            </div>
+            <button onclick="removeCartItem(${item.id})" id="remover">Remover</button> 
+            <a href="index.html"><button id="finalizar">Finalizar compra</button></a>
+        `;
+        cartList.appendChild(cartItem);
+    });
+
+    // Verifica se o carrinho está vazio e exibe/oculta o botão "Limpar Carrinho" conforme necessário
+    if (cart.length > 0) {
+        limparCarrinhoBtn.style.display = 'block';
+    } else {
+        limparCarrinhoBtn.style.display = 'none';
+    }
+}
+// Chama a função renderCart() para renderizar os itens do carrinho ao carregar a página
+renderCart();
+
+
+// Função para remover um item do carrinho
+function removeCartItem(productId) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.id !== productId); // Remove o item com o ID correspondente
+    localStorage.setItem('cart', JSON.stringify(cart)); // Atualiza o carrinho no armazenamento local
+    renderCart(); // Renderiza novamente o carrinho após a remoção do item
+    verificarCarrinho(); // Verifica o carrinho novamente após a remoção do item
+}
+
+
+// Inicialização da página
+renderCart();
+
+// Função para limpar o carrinho de compras
+function clearCart() {
+    localStorage.removeItem('cart');
+    // Redireciona para a página do carrinho vazio
+    window.location.href = 'carrinho.html';
+}
+
+function verificarCarrinho() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const botaoContinuarComprando = document.querySelector('.botao1');
+    const fraseh1 = document.getElementById('h1');
+    const fraseP = document.getElementById('p');
+
+    if (cart.length > 0) {
+        // Se o carrinho não estiver vazio, oculta a frase e o botão "Continuar comprando"
+        botaoContinuarComprando.style.display = 'none';
+        fraseh1.style.display = 'none';
+        fraseP.style.display = 'none';
+    } else {
+        // Se o carrinho estiver vazio, exibe a frase e o botão "Continuar comprando"
+        botaoContinuarComprando.style.display = 'block';
+        fraseh1.style.display = 'block';
+        fraseP.style.display = 'block';
+    }
+}
+
+// Chama a função para verificar o carrinho ao carregar a página
+verificarCarrinho();
+
+
+</script>
+    
+   </body>
+</html>

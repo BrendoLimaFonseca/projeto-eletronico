@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>RegistrationForm_v1 by Colorlib</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- MATERIAL DESIGN ICONIC FONT -->
+<link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- STYLE CSS -->
+<link rel="stylesheet" href="css/style(cadastro).css">
+</head>
+
+<body>
+
+	<div class="wrapper" style="background-color: #080710;">
+		<div class="shape"></div>
+		<div class="shape"></div>
+		<div class="inner">
+			<div class="image-holder">
+				<img src="images/nexustech.png" height="710px" alt="">
+
+				<div class="textos">
+					<h1 class="fraseh1">
+						Seja bem-vindo<br>de volta!
+					</h1>
+					<p class="frase1">
+						acesse sua conta agora<br>mesmo
+					</p>
+					<a href="./login.html"><button class="bott">login</button></a>
+				</div>
+			</div>
+			<form action="cadastrar" th:object = "${erro}" method="post">
+			<div th:if="${erro != null}" th:text="${erro}" class="alert alert-danger" role="alert"></div>
+				<h3>Cadastre-se</h3>
+				<div class="form-group">
+					<input type="text" id="input2" placeholder="Nome"
+						 class="form-control" name="nome" required> 
+						
+						<input
+						type="text" id="input2" placeholder="Sobrenome"
+						class="form-control" name="sobrenome" required autocomplete="off">
+				</div>
+				<div class="form-wrapper">
+					<input id="input1" type="text" placeholder="Usuário"
+						class="form-control" name="user" required autocomplete="off">
+
+				</div>
+				<div class="form-wrapper">
+					<input id="input1" type="text" placeholder="Digite seu e-mail"
+						class="form-control" name="email" required autocomplete="off">
+
+				</div>
+				<div class="form-wrapper">
+					<input id="input1" type="password" placeholder="digite sua senha"
+						class="form-control" name="senha" required autocomplete="off">
+
+				</div>
+				<div class="form-wrapper">
+					<input id="input1" type="text" placeholder="Digite seu CEP" onblur="pesquisacep(this.value);" maxlength="8"
+						min="8" class="form-control" name="cep" required autocomplete="off">
+
+				</div>
+				<div class="form-wrapper">
+					<input id="rua"  type="text" placeholder="Digite seu endereço"
+						class="form-control" name="rua" required autocomplete="off">
+
+				</div>
+				<div class="form-wrapper">
+					<input id="input1" type="text" placeholder="Digite seu Complemento"
+						class="form-control" name="complemento" required autocomplete="off">
+
+				</div>
+				<div class="form-wrapper">
+					<input id="bairro" type="text" placeholder="Digite seu Bairro"
+						class="form-control" name="bairro" required autocomplete="off">
+
+				</div>
+
+				<div class="form-wrapper">
+					<input id="input1" type="text" placeholder="Digite seu CPF"
+						maxlength="11" minlength="11"  class="form-control" name="cpf" required autocomplete="off">
+
+				</div>
+				<div class="form-wrapper">
+					<input id="uf" type="text" placeholder="UF"
+						class="form-control" name="estado" required autocomplete="off">
+
+				</div>
+				<div class="form-wrapper">
+					<input id="cidade" type="text" placeholder="Digite sua cidade"
+						class="form-control"  name="cidade" required autocomplete="off">
+
+				</div>
+
+				<div class="form-wrapper">
+					<input id="input1" type="text" placeholder="Número"
+						class="form-control" name="numero" required autocomplete="off">
+
+				</div>
+
+				<a href="indexx.html"><button type="submit">
+					Registrar<i class="fas fa-arrow-right"></i></a>
+
+				</button>
+			</form>
+		</div>
+	</div>
+<script  src="js/cep.js"></script>
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

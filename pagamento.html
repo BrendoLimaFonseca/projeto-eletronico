@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>escolha de pagamento</title>
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="js/js.js">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="checkout-panel">
+        <div class="panel-body">
+          
+      
+         
+       
+         <a href="cartao.html">
+            <label for="card" class="method card">
+              <div class="card-logos">
+                <img src="https://designmodo.com/demo/checkout-panel/img/visa_logo.png"/>
+                
+              </div>
+       
+       
+              <div class="radio-input">
+               <input id="card" type="hidden" name="payment">
+                Cartão de credito/visa
+              </div>
+            </label>
+             </a>
+      <a th:href="gerar-boleto">
+            <label for="paypal" class="method paypal">
+              <img src="imgs/boleto.png" width="90px"/>
+              <div class="radio-input">
+                <input id="paypal" type="hidden" name="payment">
+                Boleto
+              </div>
+            </label>
+              
+            </a>     
+          
+            <a href="index(pix).html">           
+               <label for="paypal" class="method paypal">
+                <img src="imgs/pix.png" width="100px"/>
+                <div class="radio-input">
+                  <input id="paypal" type="hidden" name="payment">
+                 Pix
+                </div>
+              </label>
+              
+            </a>
+
+          
+     <!--    <div class="botao"> 
+            <button type="submit" class="butt">prosseguir</button>
+        </div>  -->
+       
+      
+    
+            </div>
+            
+          </div>
+        
+       
+       
+     
+      
+</body>
+</html>
